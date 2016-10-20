@@ -42,6 +42,37 @@ public class LinkedList {
 		ls.printLinkedlist();
 		ls.append(34);
 		ls.printLinkedlist();
+		ls.deleteByValue(19);
+		ls.printLinkedlist();
+		ls.deleteByIndex(2);
+		ls.printLinkedlist();
+	}
+
+	private void deleteByIndex(int index) {
+		System.out.println("\n deleting node at index :"+index);
+		Node node=head;
+		Node prevNode=null;
+		for(int i=0;i<index-1;i++){
+			prevNode=node;
+			node=node.next;
+		}
+		prevNode.next=node.next;
+	}
+
+	private void deleteByValue(int value) {
+		System.out.println("\n deleting value from linked list :"+value);
+		Node node=head;
+		Node prevNode=null;
+		while(node!=null){
+			if(node.data==value){
+				prevNode.next=node.next;
+				return;
+			}
+			prevNode=node;
+			node=node.next;
+			
+		}
+				
 	}
 
 	private void append(int data) {
@@ -50,7 +81,9 @@ public class LinkedList {
 		while(node!=null){
 			if(node.next==null){
 				node.next=new Node(data);
+				return;
 			}
+		node=node.next;
 		}
 	}
 
