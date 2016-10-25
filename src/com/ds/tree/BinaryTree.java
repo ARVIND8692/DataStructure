@@ -81,9 +81,26 @@ public class BinaryTree {
 		bst.printInOrder();
 		System.out.println("\n is bst : "+bst.isBST());
 		
+		bst.findLCA(3,17);
+		
 	}
 
-	 /* returns true if given search tree is binary
+	 private void findLCA(int i, int j) {
+		 System.out.println("\n finding LCA of "+i+" and "+j+" is :"+findLCARec(i,j,root).data);
+	}
+
+	private Node findLCARec(int i, int j, Node node) {
+		if(node==null) return null;
+		if((int)node.data>i && (int)node.data>j){
+			return findLCARec(i, j, node.left);
+		}
+		if((int)node.data<i && (int) node.data<j){
+			return findLCARec(i, j, node.right);
+		}
+		return node;
+	}
+
+/* returns true if given search tree is binary
     search tree (efficient version) */
    boolean isBST()  {
        return isBSTUtil(root, Integer.MIN_VALUE,
